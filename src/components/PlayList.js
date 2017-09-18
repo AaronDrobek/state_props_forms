@@ -1,16 +1,15 @@
 import React, {Component} from 'react';
-import PlayListItems from '/PlayListItems.js'
+import PlayListItem from './PlayListItem.js'
 
 
 export default class PlayList extends Component{
-  constructor(){
-    super();
+  constructor(props){
+    super(props);
+
+    this.fetchData=this.fetchData.bind(this);
 
     this.state = {
-      username: '',
-      songArtist: '',
-      songTitle: '',
-      songNotes: ''
+    songs: []
     }
   }
   componentDidMount(){
@@ -21,13 +20,18 @@ export default class PlayList extends Component{
           console.log("state", this.state.songs);
         })
   }
-  fetchData = (e) => {
-      e.preventDefault();
+  fetchData = (event) => {
+      event.preventDefault();
       fetch('https://tiny-lasagna-server.herokuapp.com/collections/playlisting').then(results => {
         return results.json();
       }).then(data => {
         this.setState({songs: data});
       })
+    }
+    render(){
+      return(<div> </div>
+
+      );
     }
 
 
