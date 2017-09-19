@@ -17,7 +17,6 @@ export default class PlayList extends Component{
           return results.json();
         }).then(data => {
           this.setState({songs: data});
-          console.log("state", this.state.songs);
         })
   }
   fetchData = (event) => {
@@ -26,10 +25,21 @@ export default class PlayList extends Component{
         return results.json();
       }).then(data => {
         this.setState({songs: data});
-      })
+      });
     }
     render(){
-      return(<div> </div>
+      let cards = this.state.songs.map((song, index) => {
+        return (
+          <PlayListItem song={song} key={index}/>
+        )
+      })
+
+      return(
+        <div className="playlist_box">
+          <button onClick={this.fetchData}>Update List</button>
+          {cards}
+
+        </div>
 
       );
     }

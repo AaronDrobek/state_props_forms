@@ -1,5 +1,7 @@
+
 .App {
   text-align: center;
+
 }
 
 .App-logo {
@@ -21,4 +23,55 @@
 @keyframes App-logo-spin {
   from { transform: rotate(0deg); }
   to { transform: rotate(360deg); }
+}
+.PlayL{
+  margin-left: 10vw;
+  height: 40;
+  width:35vw;
+  /*background-color: red;*/
+}
+.PlayLF{
+
+  background-color: blue;
+  height: 65vw;
+  width: 40vw;
+  display: flex;
+
+}
+.submit{
+  color: red;
+}
+.formtext{
+  margin-left: 2vw;
+  /*margin: 1vw;*/
+  width: 25vw;
+  font-size: 18pt;
+
+}
+.form_box{
+  width: 20vw;
+  height: 65vw;
+
+
+}
+.form_container{
+  width: 100vw;
+  height: 70vw;
+  display: flex;
+
+}
+.form_box input{
+
+  /*margin-top: 2vw;*/
+}
+.list{
+  padding-top: 2vw;
+  padding-left: 2vw;
+  border-radius: 10%;
+  text-align: left;
+  background-color: lightblue;
+  font-size: 12pt;
+  margin-bottom: 1vw;
+  width: 25vw;
+  height: 20vw;
 }

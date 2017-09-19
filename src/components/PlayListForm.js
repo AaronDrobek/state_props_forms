@@ -12,26 +12,26 @@ export default class PlayListForm extends Component{
     this.addToList=this.addToList.bind(this);
     this.handleSubmit=this.handleSubmit.bind(this);
     this.state={
-      name: '',
-      artist: '',
-      title: '',
-      notes: ''
+      userName: '',
+      songArtist: '',
+      songTitle: '',
+      songNotes: ''
     };
 
   }
 
 
     handleNameChange(event){
-      this.setState({name: event.target.value})
+      this.setState({userName: event.target.value})
     }
     handleArtistChange(event){
-      this.setState({artist: event.target.value})
+      this.setState({songArtist: event.target.value})
     }
     handleTitleChange(event){
-      this.setState({title: event.target.value})
+      this.setState({songTitle: event.target.value})
     }
     handleNotesChange(event){
-      this.setState({notes: event.target.value})
+      this.setState({songNotes: event.target.value})
     }
     handleSubmit(event){
       event.preventDefault();
@@ -39,14 +39,7 @@ export default class PlayListForm extends Component{
     }
     addToList = (event) => {
         event.preventDefault();
-        this.setState({
-        name: event.target.value,
-        title: event.target.value,
-        artist: event.target.value,
-        notes: event.target.value
-      });
         let listItem = JSON.stringify(this.state);
-        console.log(listItem);
 
         fetch("https://tiny-lasagna-server.herokuapp.com/collections/playlisting", {
           method: "POST",
@@ -57,13 +50,18 @@ export default class PlayListForm extends Component{
         }
       }
 
-    ).then(response => {
-      console.log(response, "yay");
+    ).then((response) => {
+      return response.json()
 
-    }).catch(err => {
+    })
+      .then((result) => {
+        this.setState({userName:'', songNotes:'', songArtist:'', songTitle:''});
+      })
+
+    .catch(err => {
       console.log(err, "boo!");
     });
-    this.setState({name:'', notes:'', artist:'', title:''});
+
 
   };
 
@@ -73,11 +71,16 @@ export default class PlayListForm extends Component{
       return(
       <div className="form_box">
         <form onSubmit={this.addToList}>
-        <input name="name" type="text" value={this.state.name} onChange={this.handleNameChange}/>
-          <input name="artist" type="text" value={this.state.artist} onChange={this.handleArtistChange}/>
-            <input name="title" type="text" value={this.state.title} onChange={this.handleTitleChange}/>
-              <textarea name="notes" type="text" value={this.state.notes} onChange={this.handleNotesChange}/>
-              <button type="submit">Submit</button>
+        <label> User Name:</label>
+        <input className="formtext" name="name" type="text" placeholder="username" value={this.state.userName} onChange={this.handleNameChange}/>
+          <label> Artist Name: </label>
+          <input className="formtext"name="artist" type="text" placeholder="artist" value={this.state.songArtist} onChange={this.handleArtistChange}/>
+            <label> Song Title: </label>
+            <input className="formtext" name="title" type="text" placeholder="title" value={this.state.songTitle} onChange={this.handleTitleChange}/>
+              <label> Notes: </label>
+              <textarea className="formtext" name="notes" type="text" placeholder="notes:" value={this.state.songNotes} onChange={this.handleNotesChange}/>
+              <p></p>
+              <button className="submit" type="submit">Submit</button>
               </form>
 
       </div>

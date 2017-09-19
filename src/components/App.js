@@ -12,17 +12,22 @@ class App extends Component {
     return (
       <div className="App">
         <div className="App-header">
-          <h2>{title}</h2>
-          </div>
-          <div className="PlayLF">
-          <PlayListForm/>
-          </div>
-        <p className="App-intro">
-          To get started, edit <code>src/App.js</code> and save to reload.
-        </p>
+            <h2>{title}</h2>
+        </div>
+            <div className="form_container">
+                <div className="PlayLF">
+                    <PlayListForm/>
+                </div>
+                <div className="PlayL">
+                    <PlayList/>
+                </div>
+            </div>
       </div>
-    );
-  }
-}
+          );
+        }
+      }
+
+
+
 
 export default App;
